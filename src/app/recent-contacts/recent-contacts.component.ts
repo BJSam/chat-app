@@ -32,11 +32,6 @@ export class RecentContactsComponent implements OnInit {
   this.service.getUsers(this.service.userName).subscribe(val => {
     if (val && this.data.length !== val.length){
       this.data = val;
-      // val.forEach((item, index, array) => {
-      //   if (item && this.service.userName && item.user !== this.service.userName){
-      //     this.data = item;
-      //   }
-      // });
     }
   });
  }

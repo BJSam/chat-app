@@ -16,9 +16,9 @@
                 </li>            
             </ul>
     </nav>
-    <div *ngIf="isPropPresent(messages,this.service.currentUser)" class="ChatContainer">
-      <div class="Chat" *ngFor="let item of messages.get(getMessageTAg(this.service.currentUser.user))">
-        <div class="from" *ngIf="item.from==='joseph'">
+    <div *ngIf="isPropPresent(messages,this.service.currentUser.user) || isPropPresent(messages,this.service.userName)" class="ChatContainer">
+      <div class="Chat" *ngFor="let item of messages.get(this.service.currentUser.user)">
+        <div class="from" *ngIf="item.from===this.service.userName">
           <div class="card text-left">
            <p>
            {{item.msg}}
@@ -33,7 +33,7 @@
             </p>
           </div>
         </div>
-          <div class="to" *ngIf="item.from !=='joseph'">
+          <div class="to" *ngIf="item.to !==this.service.currentUser.user">
             <div class="card text-left">
               <p>
               {{item.msg}}
@@ -51,7 +51,7 @@
       </div>
      
     </div>
-    <div *ngIf="!isPropPresent(messages,this.service.currentUser)" class="ChatContainer">
+    <div *ngIf="!isPropPresent(messages,this.service.currentUser.user)" class="ChatContainer">
       <div class="Chat">
         <h1>No Chat Yet</h1>
       </div>     
