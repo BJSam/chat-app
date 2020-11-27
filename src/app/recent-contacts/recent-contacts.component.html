@@ -1,0 +1,23 @@
+<div *ngFor="let d of data" [ngClass]="{'active': selectedItem == d}" class="cardConn">
+    <div class="card text-center d-flex flex-row" (click)="listClick($event, d)" >
+        <div class="cardBody">
+            <div class="profileWithDot">                
+            <div class="profileDiv">
+                <div class="profileImgCon">
+                    <img [src]='d.imgUrl' alt="Profile">
+                </div>                
+            </div>
+                <div class="greenDot">
+                    <i class="fas fa-circle"></i>
+                </div>
+            </div>
+          <div class="cardText">
+            <p class="font-weight-bold">{{d.user}}</p>
+            <p>{{d.msg}}</p>
+          </div>
+        </div>
+        <div class="numberOfMsg">
+            <span class="badge rounded-circle bg-white">{{d.newMsg}}</span>
+        </div>
+    </div>
+</div>

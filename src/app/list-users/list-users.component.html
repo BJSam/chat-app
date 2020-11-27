@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand ">
+    <a class="navbar-brand text-white" href="#">Chat App</a>
+        <ul class="navbar-nav w-100 justify-content-end text-white">
+            <li class="nav-item m-2">
+                <i class="fas fa-plus-circle  text-white fa-lg "></i>
+            </li>
+            <li class="nav-item m-2 ">
+                <i class="fas fa-ellipsis-v text-white fa-lg"></i>
+            </li>            
+        </ul>
+</nav>
+<main class="d-flex flex-column justify-content-start w-100">
+   <div class="searchdiv d-flex flex-row justify-content-center">
+    <i class="fas fa-search  text-white  searchIcon"></i>
+    <input class="search" type="search" name="search" id="search"/>
+   </div>
+   <div class="OptionsIcons d-flex flex-row justify-content-around">
+    <i (click)="this.route.navigateByUrl('/r')" [ngClass]="{'active': this.route.url === '/r'}"  class="far fa-history"></i>
+    <i [ngClass]="{'active': this.route.url === '/f'}" class="fal fa-user-friends "></i>
+    <i (click)="this.route.navigateByUrl('/ab')" [ngClass]="{'active': this.route.url === '/ab'}" class="fal fa-address-book "></i>
+    <i [ngClass]="{'active': this.route.url === '/x'}" class="fal fa-cabinet-filing "></i>
+   </div>
+   <div class="ContentOutlet">
+    <router-outlet></router-outlet>
+   </div>
+</main>
