@@ -17,11 +17,11 @@
             </ul>
     </nav>
     <div *ngIf="isPropPresent(messages,this.service.currentUser)" class="ChatContainer">
-      <div class="Chat" *ngFor="let item of messages">
+      <div class="Chat" *ngFor="let item of messages.get(getMessageTAg(this.service.currentUser.user))">
         <div class="from" *ngIf="item.from==='joseph'">
           <div class="card text-left">
            <p>
-           {{item.message}}
+           {{item.msg}}
            </p>
           </div>
           <div class="ProfileConn">
@@ -36,7 +36,7 @@
           <div class="to" *ngIf="item.from !=='joseph'">
             <div class="card text-left">
               <p>
-              {{item.message}}
+              {{item.msg}}
               </p>
              </div>
              <div class="ProfileConn">
