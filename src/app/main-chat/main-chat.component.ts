@@ -23,11 +23,9 @@ export class MainChatComponent implements OnInit {
         this.messages.set(`${data.from}`, [data]);
         }
       }
-      //console.log(this.messages);
     });
   }
   isPropPresent = (obj: Map<any, any>, user) => {
-    //console.log('username:||' + user);
     return obj.has(user);
   }
   sendmessage = async () => {
@@ -47,6 +45,8 @@ export class MainChatComponent implements OnInit {
           //console.log(this.messages);
         }
       });
+    console.log('messages');
+    console.log(this.messages);
   }
   temp(dd){
 console.log(typeof dd);
