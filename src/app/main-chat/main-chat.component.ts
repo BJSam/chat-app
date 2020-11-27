@@ -37,6 +37,7 @@ export class MainChatComponent implements OnInit {
       this.msg.nativeElement.value)
       .subscribe(async (data) => {
         if (data){
+          this.msg.nativeElement.value = '';
           if (this.messages.has(`${data.to}`)){
           const oldMsgs = await this.messages.get(`${data.to}`);
           this.messages.set(`${data.to}`, [data, ...oldMsgs]);
@@ -46,5 +47,9 @@ export class MainChatComponent implements OnInit {
           //console.log(this.messages);
         }
       });
+  }
+  temp(dd){
+console.log(typeof dd);
+console.log(dd);
   }
 }

@@ -72,7 +72,7 @@ export class SService {
   }
   sendMessage(to, from, msg): Observable<any>{
     if (to && from && msg){
-      const httpUrl = 'http://localhost:3000/sendprivatemsg/?from=' + from + '&&to=' + to + '&&msg=' + msg + '&&date=' + new Date();
+      const httpUrl = `http://localhost:3000/sendprivatemsg/?from=${from}&&to=${to}&&msg=${msg}&&date=${new Date().getTime()}`;
       return  this.http.get<any[]>(httpUrl);
      }
   }
