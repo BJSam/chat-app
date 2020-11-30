@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { SService } from '../services/s.service';
 @Component({
   selector: 'app-main-chat',
@@ -11,9 +12,17 @@ export class MainChatComponent implements OnInit {
   CurrentUser: any;
   @ViewChild('msg') msg: ElementRef;
   messages = new Map();
-  constructor(public route: Router, private Activeroute: ActivatedRoute, public service: SService) { }
-
-  ngOnInit(): void {
+  constructor(public route: Router, public service: SService, private db: AngularFirestore) { }
+  async ngOnInit(): Promise<void> {
+   // this.service.getAllOldMessages();
+    this.service.oldMessages.subscribe(
+      (d) => {
+        if (d){
+          const map = new Map(Object.entries(d));
+          this.messages = map;
+        }
+      }
+   );
     this.service.recivedMessage.subscribe(async (data) => {
       if (data){
         if (this.messages.has(`${data.from}`)){
@@ -42,13 +51,12 @@ export class MainChatComponent implements OnInit {
           }else{
           this.messages.set(`${data.to}`, [data]);
           }
-          //console.log(this.messages);
         }
       });
     console.log('messages');
     console.log(this.messages);
   }
-  temp(dd){
+  temp (dd){
 console.log(typeof dd);
 console.log(dd);
   }

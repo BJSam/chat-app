@@ -9,6 +9,7 @@ import { SService } from '../services/s.service';
 })
 export class RecentContactsComponent implements OnInit {
   data = [];
+  displayRecenrUsers = [];
   selectedItem: any =  {
     name: 'jhon',
     msg: 'helo',
@@ -18,17 +19,21 @@ export class RecentContactsComponent implements OnInit {
   constructor(public route: Router, public service: SService ) { }
 
   ngOnInit(): void {
-   if (this.service.socket){
+    this.service.recentChatUsers.subscribe(val => {
+      this.displayRecenrUsers = val;
+      console.log(this.displayRecenrUsers)
+    });
+    if (this.service.socket){
     this.service.socket.on('cnn', (dt: any) => {console.log(dt); });
    }
-   if (!this.service.userName){
+    if (!this.service.userName){
     const user = prompt('Enter your name');
     if (user){
    this.service.userObserver.next(user.toLowerCase().trim());
   }
   }
-   setInterval(() => {
- if(this.service.userName){
+    setInterval(() => {
+ if (this.service.userName){
   this.service.getUsers(this.service.userName).subscribe(val => {
     if (val && this.data.length !== val.length){
       this.data = val;

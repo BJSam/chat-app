@@ -9,7 +9,9 @@ import { RecentContactsComponent } from './recent-contacts/recent-contacts.compo
 import { AddressBookComponent } from './address-book/address-book.component';
 import { ProfileInfoComponent } from './profile-info/profile-info.component';
 import {HttpClientModule} from '@angular/common/http';
-
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,9 @@ import {HttpClientModule} from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

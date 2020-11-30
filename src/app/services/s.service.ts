@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { BehaviorSubject, Observable } from 'rxjs';
 import * as socketIO from 'socket.io-client';
 @Injectable({
@@ -14,7 +15,9 @@ export class SService {
   currentUser;
   profileDetails: any = null;
   recivedMessage = new BehaviorSubject(null);
-  constructor(private http: HttpClient) {
+  recentChatUsers = new BehaviorSubject(null);
+  oldMessages = new BehaviorSubject(null);
+  constructor(private http: HttpClient, private db: AngularFirestore) {
     if (this.socket){
       console.log(this.socket);
       this.socket.on('new_message', (data) => {
@@ -38,6 +41,7 @@ export class SService {
         imgUrl: '../../assets/f3.jpg'
       }
     });
+    this.getAllOldMessages(this.userName);
     temp.on('new_message', (data) => {
       console.log(data);
       this.recivedMessage.next(data);
@@ -76,4 +80,12 @@ export class SService {
       return  this.http.get<any[]>(httpUrl);
      }
   }
+  getAllOldMessages = async(user) => {
+    const httpUrl = `http://localhost:3000/getusersandoldchats/${user}`;
+    this.http.get<any[]>(httpUrl).subscribe((dt) => {
+      this.oldMessages.next(dt);
+      this.recentChatUsers.next(Object.keys(dt));
+      console.log(Object.keys(dt));
+    });
+    }
 }
