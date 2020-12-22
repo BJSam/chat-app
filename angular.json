@@ -29,11 +29,13 @@
             ],
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.css", 
-              "src/styles.scss"
+              "src/styles.scss",
+              "./node_modules/emojionearea/dist/emojionearea.min.css"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.js",
               "./node_modules/bootstrap/dist/js/bootstrap.js",
+              "./node_modules/emojionearea/dist/emojionearea.min.js"
             ]
           },
           "configurations": {

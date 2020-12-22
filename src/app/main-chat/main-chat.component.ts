@@ -2,6 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { SService } from '../services/s.service';
+import * as $ from 'jquery';
+import * as emojioneArea from 'emojionearea';
 @Component({
   selector: 'app-main-chat',
   templateUrl: './main-chat.component.html',
@@ -15,7 +17,7 @@ export class MainChatComponent implements OnInit {
   constructor(public route: Router, public service: SService, private db: AngularFirestore) { }
   async ngOnInit(): Promise<void> {
    // this.service.getAllOldMessages();
-    this.service.oldMessages.subscribe(
+   this.service.oldMessages.subscribe(
       (d) => {
         if (d){
           const map = new Map(Object.entries(d));
@@ -23,7 +25,7 @@ export class MainChatComponent implements OnInit {
         }
       }
    );
-    this.service.recivedMessage.subscribe(async (data) => {
+   this.service.recivedMessage.subscribe(async (data) => {
       if (data){
         if (this.messages.has(`${data.from}`)){
         const oldMsgs = await this.messages.get(`${data.from}`);
@@ -39,7 +41,7 @@ export class MainChatComponent implements OnInit {
   }
   sendmessage = async () => {
     this.service.sendMessage(
-      this.service.currentUser.user,
+      this.service.currentUser,
       this.service.userName,
       this.msg.nativeElement.value)
       .subscribe(async (data) => {

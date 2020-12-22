@@ -13,6 +13,7 @@ export class SService {
   usersList;
   socket: any;
   currentUser;
+  onlineUsers = new BehaviorSubject([]);
   profileDetails: any = null;
   recivedMessage = new BehaviorSubject(null);
   recentChatUsers = new BehaviorSubject(null);
@@ -23,6 +24,7 @@ export class SService {
       this.socket.on('new_message', (data) => {
         console.log('new_message data' + data);
       });
+     
     }
     // setInterval(() => {
     //   const httpVal = this.http.get('http://localhost:3000/users');
@@ -46,6 +48,16 @@ export class SService {
       console.log(data);
       this.recivedMessage.next(data);
     });
+    temp.on('users',(data)=>{
+      // console.log('users list from socket')
+      // console.log(data);
+      if(data && data.length > 0){
+       this.onlineUsers.next(data);
+      }
+    })
+    this.onlineUsers.subscribe(data=>{
+      console.log(data)
+    })
   }
   console.log(val);
   });

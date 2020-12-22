@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { SService } from '../services/s.service';
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-recent-contacts',
   templateUrl: './recent-contacts.component.html',
@@ -18,7 +19,7 @@ export class RecentContactsComponent implements OnInit {
   };
   constructor(public route: Router, public service: SService ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.service.recentChatUsers.subscribe(val => {
       this.displayRecenrUsers = val;
       console.log(this.displayRecenrUsers)
@@ -27,20 +28,43 @@ export class RecentContactsComponent implements OnInit {
     this.service.socket.on('cnn', (dt: any) => {console.log(dt); });
    }
     if (!this.service.userName){
-    const user = prompt('Enter your name');
-    if (user){
-   this.service.userObserver.next(user.toLowerCase().trim());
-  }
-  }
-    setInterval(() => {
- if (this.service.userName){
-  this.service.getUsers(this.service.userName).subscribe(val => {
-    if (val && this.data.length !== val.length){
-      this.data = val;
+  //   const user = prompt('Enter your name');
+  //   if (user){
+  //  this.service.userObserver.next(user.toLowerCase().trim());
+  // }
+  const { value: user } = await Swal.fire({
+    title: 'Enter your name',
+    input: 'text',
+    inputLabel: 'Your Name',
+    inputPlaceholder: 'Enter your Name',
+    allowOutsideClick: false,
+    inputValidator: (value) => {
+      if (!value) {
+        return 'we require you name'
+      }
     }
-  });
- }
-   }, 1000);
+  })
+  
+  if (user) {
+    this.service.userObserver.next(user.toLowerCase().trim());
+  }
+  }
+//     setInterval(() => {
+//  if (this.service.userName){
+//   this.service.getUsers(this.service.userName).subscribe(val => {
+//     if (val && this.data.length !== val.length){
+//       this.data = val;
+//     }
+//   });
+//  }
+//    }, 1000);
+   this.service.recentChatUsers.subscribe(dt=>{
+     console.log('recent chat users');
+     console.log(typeof dt)
+     if(dt){
+     // this.data = dt; 
+     }
+   })
   }
   listClick = (event: any, newValue: object) => {
     this.selectedItem = newValue;
