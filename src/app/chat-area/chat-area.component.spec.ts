@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddressBookComponent } from './address-book.component';
+import { ChatAreaComponent } from './chat-area.component';
 
-describe('AddressBookComponent', () => {
-  let component: AddressBookComponent;
-  let fixture: ComponentFixture<AddressBookComponent>;
+describe('ChatAreaComponent', () => {
+  let component: ChatAreaComponent;
+  let fixture: ComponentFixture<ChatAreaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddressBookComponent ]
+      declarations: [ ChatAreaComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddressBookComponent);
+    fixture = TestBed.createComponent(ChatAreaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RecentContactsComponent } from './recent-contacts.component';
+import { DefaultScreenComponent } from './default-screen.component';
 
-describe('RecentContactsComponent', () => {
-  let component: RecentContactsComponent;
-  let fixture: ComponentFixture<RecentContactsComponent>;
+describe('DefaultScreenComponent', () => {
+  let component: DefaultScreenComponent;
+  let fixture: ComponentFixture<DefaultScreenComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RecentContactsComponent ]
+      declarations: [ DefaultScreenComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RecentContactsComponent);
+    fixture = TestBed.createComponent(DefaultScreenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

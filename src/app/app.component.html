@@ -1,5 +1,14 @@
-<main class="Main">
-  <app-list-users></app-list-users>
-  <app-main-chat  [ngStyle]="{'width': (this.service.profileDetails) ? '50%' : '75%'}"></app-main-chat>
-  <app-profile-info *ngIf="this.service.profileDetails" class="shadow-small"></app-profile-info>
+<main>
+  <nav>    
+    <h1>{{!this.gs.name?  name: 'Hello, '+this.gs.name.split('-')[0]}}</h1>
+  </nav>
+  <div class="cont">
+    <div class="contactWin">
+      <app-contact-list></app-contact-list>
+    </div>
+    <div class="chatWin">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  
 </main>

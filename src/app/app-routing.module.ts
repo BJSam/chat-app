@@ -1,19 +1,12 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { AddressBookComponent } from './address-book/address-book.component';
-import { MainChatComponent } from './main-chat/main-chat.component';
-import { RecentContactsComponent } from './recent-contacts/recent-contacts.component';
+import { RouterModule, Routes } from '@angular/router';
+import { ChatAreaComponent } from './chat-area/chat-area.component';
+import { DefaultScreenComponent } from './default-screen/default-screen.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'r', pathMatch: 'full' },
-  {
-    path: 'r',
-    component: RecentContactsComponent
-  },
-  {
-    path: 'ab',
-    component: AddressBookComponent
-  }
+  { path: '', component: DefaultScreenComponent },
+  {path:'chat/:id', component:ChatAreaComponent},
+  { path: 'chat',   redirectTo: '', pathMatch: 'full' }, 
 ];
 
 @NgModule({

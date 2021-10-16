@@ -1,25 +1,34 @@
-@import "../assets/var";
-.Main{
+@import '../assets/var';
+main{
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
     height: 100vh !important;
-    app-list-users{
-        width: 25% !important;
-        background-color: $primary;
-        color: $white;
-        border-radius: 5px;
-        height: 100vh !important;        
-        overflow-y: auto;
+    overflow-x: auto;
+    scrollbar-width:thin;
+    min-width: 800px;
+    .cont{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        margin: 0;
+        padding: 0;
+        height: calc(100% - 80px) !important;
+        .chatWin{
+            flex: 1;
+            background-color: $chat_txt_bg;
+            width: 80%;
+        }
+        .contactWin{
+            flex-basis: 250px;
+            height: calc(100% +0px) !important;
+            width: 20%;
+        }
     }
-    app-main-chat{
-        background-color: #f8f9fb;
-        width: 50%;
-        height: 100vh !important;
-    }
-    app-profile-info{
-        width: 25%;
-        border-radius: 10px;
-    }
+}
+nav{
+    background-color: $primary;
+    color: $white;
+    padding: 8px;
+    height: 80px;
 }
