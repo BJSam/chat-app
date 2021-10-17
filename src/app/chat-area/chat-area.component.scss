@@ -1,6 +1,40 @@
-div{
+.main{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     height: 100%;
+    .msgArea{
+        background-color: red;
+        flex: 90%;
+    }
+    .sendMsg{
+        background-color: yellow;
+        flex: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        textarea{
+            background-color: transparent;
+            border: transparent;
+            width: 70%;
+            outline: none;
+            padding: 5px;
+            height: 50%;
+            resize: none;
+        }
+        button{
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border: none;
+	        padding: 0;
+	        font: inherit;
+	        cursor: pointer;
+            border-radius: 50%;
+            &:active{
+                background-color: gray;
+            }
+            margin-left: 10px;
+        }
+    }
 }

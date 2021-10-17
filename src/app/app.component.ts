@@ -15,27 +15,27 @@ export class AppComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    if (!this.gs.name) {
-      Swal.fire(
-        {
-          title: 'Enter your name',
-          input: 'text',
-          inputLabel: 'Nic Name works',
-          inputPlaceholder: 'Enter your Name',
-          allowOutsideClick: false,
-          inputValidator: (value) => {
-            if (!value) {
-              return 'we require you name'
-            } else return ''
-          },
+    // if (!this.gs.name) {
+    //   Swal.fire(
+    //     {
+    //       title: 'Enter your name',
+    //       input: 'text',
+    //       inputLabel: 'Nic Name works',
+    //       inputPlaceholder: 'Enter your Name',
+    //       allowOutsideClick: false,
+    //       inputValidator: (value) => {
+    //         if (!value) {
+    //           return 'we require you name'
+    //         } else return ''
+    //       },
 
-        }
-      ).then((res) => {
-        if (res.value)
-          this.gs.name = (res.value + '-' + this.current.getTime()).toLowerCase()
-        this.name = (res.value + '-' + this.current.getTime()).toLowerCase()
-        this.gs.setConn(this.name)
-      })
-    }
+    //     }
+    //   ).then((res) => {
+    //     if (res.value)
+    //       this.gs.name = (res.value + '-' + this.current.getTime()).toLowerCase()
+    //     this.name = (res.value + '-' + this.current.getTime()).toLowerCase()
+    //     this.gs.setConn(this.name)
+    //   })
+    // }
   }
 }

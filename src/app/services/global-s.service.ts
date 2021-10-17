@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { io ,Socket} from 'socket.io-client';
-
+import * as PouchDb from 'pouchdb-browser';
 @Injectable({
   providedIn: 'root'
 })
