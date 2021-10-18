@@ -1,14 +1,29 @@
-import { Injectable, OnInit } from '@angular/core';
-import { io ,Socket} from 'socket.io-client';
-import * as PouchDb from 'pouchdb-browser';
+import { Injectable} from '@angular/core';
+import { io } from 'socket.io-client';
+import PouchDB from 'pouchdb'
+import { type } from 'os';
+//var pdb=require('../../../node_modules/pouchdb-all-dbs/dist/pouchdb.all-dbs.min.js')
+//var PouchDB = require('pouchdb');
+// var k =require('../../../node_modules/pouchdb-all-dbs/dist/pouchdb.all-dbs.min.js');
+// name=> name of the ppl who our user is sending msg
+//messageSource=> from our user perceptive 
+type messageDocT = {
+  id?:string,
+  name:string,
+  messageSource:'to'|'from',
+  message:string,
+  date:number
+}
 @Injectable({
   providedIn: 'root'
 })
 export class GlobalSService{
-  constructor() { 
-    
+  
+pouchDb!: PouchDB.Database<{}>
+  constructor() {  
   }
  name!:string;
+ current = new Date();
  users:Array<any>
  =[
   {
@@ -87,5 +102,44 @@ setConn =(userNAme:string)=>{
    socket.on('users',(rs)=>{
     this.users = rs
    })
+}
+setDB=(un:string)=>{
+this.pouchDb= new PouchDB('sam-1634496427033');
+}
+getAllDocs=()=>{
+  if(this.pouchDb){
+    this.pouchDb .allDocs({
+      include_docs: true,
+      attachments: true
+    }).then((rs)=>{
+      console.log("DB results")
+      console.log(rs)
+    }).catch((error)=>{
+      console.log("DB error")
+      console.log(error)
+    })
+  }else{
+    console.log('no DB')
+  }
+}
+setMsg=(msg:string, name:string, sender:'to'|'from'='to')=>{
+  var db = this.pouchDb
+  var msgg:messageDocT = {
+    name:name,
+    messageSource:sender,
+    message:msg,
+    date: this.current.getTime()
+  }
+  console.log(msgg)
+  if(db){
+    db.post(
+      msgg
+    ).then((res)=>{
+      console.log('msg added',res)
+
+    }).catch((e)=>{
+      console.log('error saving DOC',e)
+    })
+  }
 }
 }

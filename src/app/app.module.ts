@@ -18,7 +18,7 @@ import { DefaultScreenComponent } from './default-screen/default-screen.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgScrollbarModule
+    NgScrollbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

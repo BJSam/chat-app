@@ -31,7 +31,7 @@
 	        font: inherit;
 	        cursor: pointer;
             border-radius: 50%;
-            &:active{
+            &:enabled:active{
                 background-color: gray;
             }
             margin-left: 10px;
