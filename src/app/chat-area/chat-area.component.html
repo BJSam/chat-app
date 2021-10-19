@@ -5,9 +5,12 @@
     <div class="sendMsg">
         <textarea name="message" id="message"
         placeholder="Type your message"
-        #msg
+        [(ngModel)]="text"
+        #msgewew=
+        "ngModel"
+        required
         ></textarea>
-        <button (click)='this.gs.setMsg(msg.value.trim(),"tosummyNAme")' [disabled]="msg.value.trim().length==0">
+        <button (click)='this.sendMessage(text)' [disabled] ='!(msgewew.valid && msgewew.value.trim().length>0)'>
             <img src="../../assets/send-Filled.png" alt="send">
         </button>
         <button (click)="this.gs.getAllDocs()">

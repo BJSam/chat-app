@@ -26,9 +26,11 @@ export class AppComponent implements OnInit {
           inputPlaceholder: 'Enter your Name',
           allowOutsideClick: false,
           inputValidator: (value) => {
-            if (!value) {
+            if (!value || value.trim().length==0) {
               return 'we require you name'
-            } else return ''
+            } 
+            else if(value.trim().length>6) return 'Pls enter nick name, this is not your job appplication form \n( ͡~ ͜ʖ ͡°)'
+            else return ''
           },
 
         }
@@ -37,7 +39,7 @@ export class AppComponent implements OnInit {
           this.gs.name = (res.value + '-' + this.current.getTime()).toLowerCase()
         this.name = (res.value + '-' + this.current.getTime()).toLowerCase()
         this.gs.setConn(this.name)
-        this.gs.setDB(this.name)
+        //this.gs.setDB(this.name)
       })
     }
   }

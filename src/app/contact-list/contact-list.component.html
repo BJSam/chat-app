@@ -6,7 +6,7 @@
 <ng-scrollbar class="ctList"  thumbClass="white-scrollbars">
     <div *ngFor="let item of this.sv.users"  [routerLink]="['/chat', item.id]" class="card">
         <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSCZNdFX5bx4Y_s8H-StHpWx3ujpCsG3qxhIu_-57pqSq3wKPEbndqnmROl" />
-    <h3>{{item.user}}</h3>
+    <h3>{{item.user.split('-')[0]}}</h3>
     </div>
     <p *ngIf="!this.sv.users || this.sv.users.length ==0">No one is here</p>
   </ng-scrollbar>
