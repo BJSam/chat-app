@@ -105,9 +105,9 @@ setConn =(userNAme:string)=>{
     })
    })
    socket.on('new_message',(rs)=>{
-     console.log('recievd msg')
+     console.log('@@@@recievd msg@@@')
     console.log(rs)
-    //here
+    this.setMsg(rs.msg, rs.from, rs.date,'from')
    })
    
 }

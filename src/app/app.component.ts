@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
           this.gs.name = (res.value + '-' + this.current.getTime()).toLowerCase()
         this.name = (res.value + '-' + this.current.getTime()).toLowerCase()
         this.gs.setConn(this.name)
-        //this.gs.setDB(this.name)
+        this.gs.setDB(this.name)
       })
     }
   }

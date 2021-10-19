@@ -1,4 +1,4 @@
 <div>
-    <h2 *ngIf="this.sg.users">Click On The Contacts</h2>
-    <h2 *ngIf="!this.sg.users">Looks like no one is online, share this link to your friends or open the same link in your other device to test.</h2>
+    <h2 *ngIf="this.sg.users && this.sg.users.length>0">Click On The Contacts</h2>
+    <h2 *ngIf="!this.sg.users || this.sg.users.length==0">Looks like no one is online, share this link to your friends or open the same link in your other device to test.</h2>
 </div>

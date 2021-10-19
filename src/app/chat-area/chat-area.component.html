@@ -2,7 +2,7 @@
     <div class="msgArea">
 
     </div>
-    <div class="sendMsg">
+    <div *ngIf="id && this.gs.users && checkuser(id)" class="sendMsg">
         <textarea name="message" id="message"
         placeholder="Type your message"
         [(ngModel)]="text"
@@ -10,11 +10,14 @@
         "ngModel"
         required
         ></textarea>
-        <button (click)='this.sendMessage(text)' [disabled] ='!(msgewew.valid && msgewew.value.trim().length>0)'>
+        <button (click)='this.sendMessage(text,this.id)' [disabled] ='!(msgewew.valid && msgewew.value.trim().length>0)'>
             <img src="../../assets/send-Filled.png" alt="send">
         </button>
         <button (click)="this.gs.getAllDocs()">
             <img src="../../assets/favicon.ico" alt="send">
         </button>
+    </div>
+    <div *ngIf="id &&( !this.gs.users ||checkuser(id)==undefined)">
+        <p>We lost this user</p>
     </div>
 </div>
